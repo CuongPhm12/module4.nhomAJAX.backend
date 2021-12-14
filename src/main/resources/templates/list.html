@@ -1,0 +1,130 @@
+<!--<!DOCTYPE html>-->
+<!--<html lang="en" xmlns:th="http://www.thymeleaf.org">-->
+<!--<head>-->
+<!--    <meta charset="UTF-8">-->
+<!--    <title>Title</title>-->
+<!--    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>-->
+<!--    <script type="text/javascript">-->
+<!--        function addNewCustomer() {-->
+<!--            let name = $('#name').val();-->
+<!--            let phone = $('#phone').val();-->
+<!--            let province = $('#province').val();-->
+<!--            let newCustomer = {-->
+<!--                name: name,-->
+<!--                phone: phone,-->
+<!--                province: {id: province}-->
+<!--            }-->
+<!--            $.ajax({-->
+<!--                headers: {-->
+<!--                    'Accept': 'application/json',-->
+<!--                    'Content-Type': 'application/json'-->
+<!--                },-->
+<!--                type: "POST",-->
+<!--                data: JSON.stringify(newCustomer),-->
+<!--                url: "customers/create",-->
+<!--                success: successHandler-->
+<!--            });-->
+<!--            event.preventDefault();-->
+<!--        }-->
+
+<!--        function successHandler() {-->
+<!--            $.ajax({-->
+<!--                type: "GET",-->
+<!--                url: "customers/create",-->
+<!--                success: function (data) {-->
+<!--                    let content = '    <tr>\n' +-->
+<!--                        '        <td>Name</td>\n' +-->
+<!--                        '        <td>Phone</td>\n' +-->
+<!--                        '        <td>Provine</td>\n' +-->
+<!--                        '        <td>Edit</td>\n' +-->
+<!--                        '        <td>Delete</td>\n' +-->
+<!--                        '    </tr>';-->
+<!--                    for (let i = 0; i < data.length; i++) {-->
+<!--                        content += getCustomer(data[i]);-->
+<!--                    }-->
+<!--                    document.getElementById('customerList').innerHTML = content;-->
+<!--                }-->
+<!--            });-->
+<!--        }-->
+
+<!--        function getCustomer(customer) {-->
+<!--            return `<tr><td >${customer.name}</td><td >${customer.phone}</td><td >${customer.province}</td>` +-->
+<!--                `<td><a class="editCustomer" href="${customer.id}">Edit</a></td>` +-->
+<!--                `<td><a class="deleteCustomer" href="${customer.id}">Delete</a></td></tr>`;-->
+<!--        }-->
+
+<!--        function getAllProvince() {-->
+<!--            $.ajax({-->
+<!--                type: "GET",-->
+<!--                url: "/provinces",-->
+<!--                success: function (data) {-->
+<!--                    let content = "";-->
+<!--                    for (let i = 0; i < data.length; i++) {-->
+<!--                        content += `<option value="${data[i].id}">${data[i].name} </option>`-->
+<!--                    }-->
+<!--                    document.getElementById("province").innerHTML = content-->
+<!--                }-->
+<!--            }-->
+<!--        )-->
+<!--        }-->
+
+<!--        function deleteCustomer(a){-->
+<!--            let id=a.getAttribute("value");-->
+<!--            $.ajax({-->
+<!--                type:"DELETE",-->
+<!--                url:"customer/delete/" +id,-->
+<!--                success:successHandler-->
+<!--            })-->
+<!--        }-->
+<!--        successHandler();-->
+<!--        getAllProvince();-->
+<!--    </script>-->
+<!--</head>-->
+<!--<body>-->
+<!--<table id="add-customer">-->
+<!--    <tr>-->
+<!--        <td>Name</td>-->
+<!--        <td><input type="text" id="name" placeholder="name"></td>-->
+<!--    </tr>-->
+<!--    <tr>-->
+<!--        <td>Phone</td>-->
+<!--        <td><input type="text" id="phone" placeholder="phone"></td>-->
+<!--    </tr>-->
+<!--    <tr>-->
+<!--        <td>Province</td>-->
+<!--        <td><select name="" id="province">-->
+<!--            &lt;!&ndash;                <option th:each="p:${provinceList}" th:value="${p.id}" th:text="${p.name}"></option>&ndash;&gt;-->
+<!--        </select></td>-->
+<!--    </tr>-->
+<!--    <tr>-->
+<!--        <td></td>-->
+<!--        <td><input type="submit" onclick="addNewCustomer()"></td>-->
+<!--    </tr>-->
+<!--</table>-->
+
+<!--<h1>Customer List</h1>-->
+<!--<table id="customerList">-->
+<!--    &lt;!&ndash;    <tr>&ndash;&gt;-->
+<!--    &lt;!&ndash;        <td> Name:</td>&ndash;&gt;-->
+<!--    &lt;!&ndash;        <td> Phone</td>&ndash;&gt;-->
+<!--    &lt;!&ndash;        <td> Province:</td>&ndash;&gt;-->
+<!--    &lt;!&ndash;        <td> Edit</td>&ndash;&gt;-->
+<!--    &lt;!&ndash;        <td> Delete</td>&ndash;&gt;-->
+<!--    &lt;!&ndash;    </tr>&ndash;&gt;-->
+<!--    &lt;!&ndash;        <tr th:each="customer:${listCustomer}">&ndash;&gt;-->
+<!--    &lt;!&ndash;            <td th:text="${customer.getName()}"></td>&ndash;&gt;-->
+<!--    &lt;!&ndash;            <td th:text="${customer.getPhone()}"></td>&ndash;&gt;-->
+<!--    &lt;!&ndash;            <td th:if="${customer.getProvince()}" th:text="${customer.getProvince().getName()}"></td>&ndash;&gt;-->
+<!--    &lt;!&ndash;            <td th:unless="${beng.province}"></td>&ndash;&gt;-->
+<!--    &lt;!&ndash;            <td>&ndash;&gt;-->
+<!--    &lt;!&ndash;                <button type="submit" th:value="${customer.id}" onclick="updateCustomer(this)">Edit</button>&ndash;&gt;-->
+<!--    &lt;!&ndash;            </td>&ndash;&gt;-->
+<!--    &lt;!&ndash;            <td>&ndash;&gt;-->
+<!--    &lt;!&ndash;                <button type="submit" th:value="${customer.id}" onclick="delete(this)">Delete</button>&ndash;&gt;-->
+<!--    &lt;!&ndash;            </td>&ndash;&gt;-->
+<!--    &lt;!&ndash;        </tr>&ndash;&gt;-->
+<!--</table>-->
+
+
+<!--&lt;!&ndash;</body>&ndash;&gt;-->
+<!--</html>-->
